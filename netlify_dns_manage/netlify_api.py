@@ -39,8 +39,6 @@ class NetlifyAPI:
         """Add DNS records to the specified domain on Netlify."""
 
         url = f"{self.api_url}/dns_zones/{zone_id}/dns_records"
-        # return
-        
         response = requests.post(url, headers=self.headers, json=data)
         if response.status_code >= 200 and response.status_code < 300:
             print("DNS record added successfully.", data)
@@ -48,5 +46,3 @@ class NetlifyAPI:
         else:
             print("Failed to add DNS record.", data)
             return False
-            # print("Status Code:", response.status_code)
-            # print("Response:", response.text)

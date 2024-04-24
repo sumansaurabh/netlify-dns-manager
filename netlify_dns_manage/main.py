@@ -1,38 +1,8 @@
 from .parser import parse_zone_file
 from .netlify_api import NetlifyAPI
 import argparse
-
-def sync_dns_records(domain_name, zone_file_path, access_token):
-    # Parse local DNS zone file
-    local_records = parse_zone_file(zone_file_path)
-    netlify = NetlifyAPI(access_token)
-    # Fetch existing DNS records from Netlify
-    zone_id = netlify.get_dns_zone(domain_name)
-    existing_records = netlify.list_dns_records(zone_id)
-    print(existing_records)
-
-    # Simple mapping of existing records for quick lookup
-    existing_map = {f"{rec['type']} {rec['hostname']}": rec for rec in existing_records}
-
-    # Loop through local records and update/create on Netlify
-    for name, data in local_records:
-        record_type, record_data = data.split(maxsplit=1)
-        record_key = f"{record_type} {name}"
-
-        if record_key in existing_map:
-            # If record exists, update it
-            record_id = existing_map[record_key]['id']
-            update_data = {
-                "type": record_type,
-                "hostname": name,
-                "value": record_data
-            }
-            netlify.update_dns_record(record_id, update_data)
-        else:
-            # If record does not exist, create a new record
-            # Implementation of record creation would be similar to update_netlify_dns_record function
-            print(f"Record {name} does not exist on Netlify, needs creation.")
-
+from .driver import sync_dns_records, convert_to_zone_file
+            
 def main():
     # Create a parser with a description of the script's purpose
     parser = argparse.ArgumentParser(description="Sync DNS records from a local zone file to Netlify or export Netlify records to a zone file.")
@@ -59,6 +29,7 @@ def main():
             sync_dns_records(args.domain_name, args.zone_path, args.token)
     elif args.execution_type == 'export':
         print(f"Exporting DNS records to a local zone file using token {args.token}")
+        convert_to_zone_file(args.token, args.domain_name)
 
     
 
