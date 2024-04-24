@@ -7,9 +7,10 @@ def parse_zone_file(domain_name, zone_file_path):
         content = stream.read()
         records: list[Record] = zonefile_parser.parse(content)
         for record in records:
+            new_name = record.name.replace(f".{domain_name}.","")
             modified_record = {
                 "rtype": record.rtype,
-                "name": record.name.replace(f".{domain_name}",""),
+                "name": new_name,
                 "rclass": record.rclass,
                 "rdata": record.rdata,
                 "ttl": record.ttl
