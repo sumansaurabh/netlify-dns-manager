@@ -1,7 +1,7 @@
 import zonefile_parser
 from zonefile_parser.record import Record
 
-def parse_zone_file(zone_file_path):
+def parse_zone_file(domain_name, zone_file_path):
     dns_records = []
     with open(zone_file_path,"r") as stream:
         content = stream.read()
@@ -9,7 +9,7 @@ def parse_zone_file(zone_file_path):
         for record in records:
             modified_record = {
                 "rtype": record.rtype,
-                "name": record.name,
+                "name": record.name.replace(f"{domain_name}.",""),
                 "rclass": record.rclass,
                 "rdata": record.rdata,
                 "ttl": record.ttl

@@ -3,7 +3,7 @@ from .netlify_api import NetlifyAPI
 
 def sync_dns_records(domain_name, zone_file_path, access_token):
     # Parse local DNS zone file
-    local_records = parse_zone_file(zone_file_path)
+    local_records = parse_zone_file(domain_name, zone_file_path)
     if not local_records:
         print("No records found in the zone file.")
     netlify = NetlifyAPI(access_token)

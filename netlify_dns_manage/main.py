@@ -1,5 +1,3 @@
-from .parser import parse_zone_file
-from .netlify_api import NetlifyAPI
 import argparse
 from .driver import sync_dns_records, convert_to_zone_file
             
