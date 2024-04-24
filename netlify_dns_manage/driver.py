@@ -10,7 +10,6 @@ def sync_dns_records(domain_name, zone_file_path, access_token):
     # Fetch existing DNS records from Netlify
     zone_id = netlify.get_dns_zone(domain_name)
     existing_records = netlify.list_dns_records(zone_id)
-    print(existing_records)
 
     # Simple mapping of existing records for quick lookup
     existing_map = {f"{rec['type']} {rec['hostname']}": rec for rec in existing_records}
