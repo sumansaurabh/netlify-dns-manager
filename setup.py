@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='netlify-dns-manager',
-    version='0.2',
+    version='0.4',
     packages=find_packages(),
     description="It provides a command line interface to manage DNS records of a domain hosted on Netlify.",
     long_description=open("README.md").read(),
