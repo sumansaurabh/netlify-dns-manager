@@ -9,7 +9,7 @@ def parse_zone_file(domain_name, zone_file_path):
         for record in records:
             modified_record = {
                 "rtype": record.rtype,
-                "name": record.name.replace(f"{domain_name}.",""),
+                "name": record.name.replace(f".{domain_name}",""),
                 "rclass": record.rclass,
                 "rdata": record.rdata,
                 "ttl": record.ttl
