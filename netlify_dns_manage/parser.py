@@ -1,9 +1,11 @@
-import dns.zone
+import zonefile_parser
+
 
 def parse_zone_file(zone_file_path):
-    zone = dns.zone.from_file(zone_file_path, relativize=False)
-    records = []
-    for name, node in zone.nodes.items():
-        for record in node.rdatasets:
-            records.append((name.to_text(), record.to_text()))
-    return records
+    dns_records = []
+    with open(zone_file_path,"r") as stream:
+        content = stream.read()
+        records = zonefile_parser.parse(content)
+        for record in records:
+            dns_records.append(record)
+    return dns_records

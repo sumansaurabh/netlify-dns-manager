@@ -9,7 +9,9 @@ setup(
     long_description_content_type="text/markdown",
     install_requires=[
         'requests',
-        'dnspython'
+        'dnspython',
+        'zonefile-parser'
+
     ],
     url="https://github.com/sumansaurabh/netlify-dns-manager",
     entry_points={
@@ -19,7 +21,7 @@ setup(
     },
     classifiers=[
         "Programming Language :: Python :: 3",
-        "License :: OSI Approved :: MIT License",
+        "License :: OSI Approved :: MIT License"
         "Operating System :: OS Independent",
     ],
     python_requires='>=3.6',

@@ -5,12 +5,11 @@ import argparse
 def sync_dns_records(domain_name, zone_file_path, access_token):
     # Parse local DNS zone file
     local_records = parse_zone_file(zone_file_path)
-    print(local_records)
-
     netlify = NetlifyAPI(access_token)
     # Fetch existing DNS records from Netlify
     zone_id = netlify.get_dns_zone(domain_name)
     existing_records = netlify.list_dns_records(zone_id)
+    print(existing_records)
 
     # Simple mapping of existing records for quick lookup
     existing_map = {f"{rec['type']} {rec['hostname']}": rec for rec in existing_records}
@@ -42,12 +41,12 @@ def main():
     parser.add_argument("execution_type", help="Specify 'import' to upload DNS records to Netlify from a zone file, or 'export' to save Netlify DNS records to a local zone file", choices=["import", "export"])
 
     # Add an argument for the Netlify access token, required for authentication
-    parser.add_argument("token", help="Netlify access token for authentication", required=True)
+    parser.add_argument("token", help="Netlify access token for authentication")
 
     # Add a conditional argument for the zone file path which is only required for the 'import' operation
-    parser.add_argument("-zp", dest="zone_path", help="Path to the local DNS zone file (required for import only)", required=False)
+    parser.add_argument("-zp", "--zone_path", help="Path to the local DNS zone file (required for import only)", required=False)
 
-    parser.add_argument("-d", dest="domain_name", help="Domain name details", required=True)
+    parser.add_argument("-d", "--domain_name", help="Domain name details", required=True)
 
     args = parser.parse_args()
 

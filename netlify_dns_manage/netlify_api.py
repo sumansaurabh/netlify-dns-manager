@@ -26,6 +26,7 @@ class NetlifyAPI:
         response = requests.get("https://api.netlify.com/api/v1/dns_zones", headers=self.headers)
         if response.status_code == 200:
             zones = response.json()
+            print(zones)
             for zone in zones:
                 if zone['name'] == domain_name:
                     return zone['id']
