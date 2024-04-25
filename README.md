@@ -1,6 +1,8 @@
 
 # Netlify DNS Manager
 
+[![Python application test](https://github.com/sumansaurabh/netlify-dns-manager/actions/workflows/test.yml/badge.svg)](https://github.com/sumansaurabh/netlify-dns-manager/actions/workflows/test.yml)
+
 The `netlify-dns-manager` is a command-line tool designed to manage DNS records for domains hosted on Netlify. It allows users to either import DNS records from a local zone file into Netlify or export Netlify DNS records to a local zone file.
 
 ## Features
