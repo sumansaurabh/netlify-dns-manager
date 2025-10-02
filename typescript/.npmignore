@@ -1,0 +1,44 @@
+# Source files
+src/
+tests/
+*.test.ts
+*.spec.ts
+
+# Configuration files
+tsconfig.json
+jest.config.js
+.gitignore
+.npmignore
+
+# Development dependencies
+node_modules/
+
+# Coverage reports
+coverage/
+
+# Build files
+*.tsbuildinfo
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Logs
+*.log
+
+# Environment files
+.env*
+
+# Test files
+*_dns_zone_file.txt
